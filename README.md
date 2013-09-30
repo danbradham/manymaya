@@ -43,7 +43,7 @@ Creates a multiprocessing Queue and runs several worker processes to pull from i
 
 ##Installation
 
-    git clone git@github.com:danbradham/manymaya.git
+    git clone https://danbradham@github.com/danbradham/manymaya.git
     cd manymaya
     python setup.py install
 
