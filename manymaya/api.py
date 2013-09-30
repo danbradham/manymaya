@@ -9,7 +9,8 @@ import maya.standalone
 
 
 def instance(fn):
-    '''Wraps a function in a maya.standalone process.
+    '''A decorator that wraps your function inside a maya.standalone
+    instance and injects a file queue.
 
     :param fn: The decorated function.
     :param queue : The file queue.
@@ -51,7 +52,8 @@ def find(inside, exts=['ma', 'mb'], subdirs=True):
 
 
 def start(file_list, fn, processes=4, verbose=False):
-    '''Create a multiprocess pool.
+    '''Creates a multiprocessing Queue from and run several worker
+    processes to pull from it.
 
     :param file_list: List of files to process.
     :param fn: Target function.

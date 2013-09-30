@@ -13,7 +13,7 @@ setup(
     description="A fast and light-weight wrapper for Autodesk Maya's standalone extension.",
     long_description=open('README.md').read(),
     author='Dan Bradham',
-    author_email='danbradham@gmail.com',
+    author_email='danielbradham@gmail.com',
     url='http://www.danbradham.com',
     packages=['manymaya'],
     package_data={'': ['LICENSE']},

@@ -4,6 +4,7 @@ import maya.cmds as cmds
 
 @manymaya.instance
 def make_cube(filepath):
+    #Use the maya.cmds module to manipulate Maya
     cmds.file(filepath, open=True, force=True)
     cmds.polyCube(name="my_cube")
     cmds.file(save=True, force=True)
