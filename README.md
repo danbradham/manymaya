@@ -2,7 +2,8 @@
 A fast and light-weight wrapper for Autodesk Maya's standalone extension. ManyMaya leverages the multiprocessing module to run maya.standalone instances concurrently.
 
 
-##An Example
+##An example
+Delete attributes from all maya files in a directory.
 
 ```python
 import manymaya
@@ -27,7 +28,7 @@ if __name__ == "__main__":
 
 
 ###API
-The api is very slim!
+As you can see ManyMaya is very easy to use. Simply decorate a function that takes a single argument, *filepath*, then call manymaya.start with a list of filepaths and the decorated function as arguments.
 
 ####manymaya.instance
 A decorator that wraps your function inside a maya.standalone instance. Every function you decorate with instance, must have a filepath argument.
