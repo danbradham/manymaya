@@ -9,7 +9,7 @@ except ImportError:
 
 setup(
     name='manymaya',
-    version=0.1,
+    version=0.2,
     description="A fast and light-weight wrapper for Autodesk Maya's standalone extension.",
     long_description=open('README.md').read(),
     author='Dan Bradham',
