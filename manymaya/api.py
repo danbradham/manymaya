@@ -1,35 +1,23 @@
-import logging
-logger = logging.getLogger('ManyMaya')
+import functools
 import os
 import sys
+import logging
 from multiprocessing import cpu_count, Process, Queue
-from functools import wraps
-from .queuehandler import QueueHandler
+from .logger import logger
 import maya.standalone
 
 
-def instance(fn):
-    '''A decorator that wraps your function inside a maya.standalone
-    instance and injects a file queue.
+def log(message, level="INFO"):
+    '''Fluff...Exists only to shorten logging calls for the end user.
 
-    :param fn: The decorated function.
-    :param queue : The file queue.
-    '''
+    :param message: Message to log.
+    :param level: Level at which to log message.(optional)'''
 
-    @wraps(fn)
-    def wrapped(queue):
-        logger.info('Starting Process')
-        maya.standalone.initialize(name='python')
-        while not queue.empty():
-            f = queue.get()
-            try:
-                fn(f)
-            except Exception, e:
-                raise Exception(e)
-        logger.info('Finishing Process')
-        logger.info('HELLO')
-        sys.stdout.flush()
-    return wrapped
+    {"DEBUG": logger.debug,
+     "INFO": logger.info,
+     "WARNING": logger.warning,
+     "ERROR": logger.error,
+     "CRITICAL": logger.critical}[level](message)
 
 
 def find(inside, exts=['ma', 'mb'], subdirs=True):
@@ -37,38 +25,60 @@ def find(inside, exts=['ma', 'mb'], subdirs=True):
     Returns a list of filepaths for use with :function <start>:.
 
     :param inside: Path to search.
-    :param ma: Include *.ma files in return (optional)
-    :param mb: Include *.mb files in return (optional)
+    :param exts: Extensions of files to include in returned list. (optional)
     :param subdirs: Search inside subdirs. (optional)
     '''
 
-    maya_files = []
+    matched_files = []
     for d, s, files in os.walk(inside):
         for f in files:
             if f.split('.')[-1] in exts:
-                maya_files.append(os.path.abspath(os.path.join(d, f)))
+                matched_files.append(os.path.abspath(os.path.join(d, f)))
 
-    return maya_files
+    return matched_files
 
 
-def start(file_list, fn, processes=4, verbose=False):
+def instance(fn):
+    '''A decorator that wraps your function inside a maya.standalone
+    instance and injects a file queue.
+
+    :param fn: The decorated function.
+    '''
+
+    @functools.wraps(fn)
+    def inst_wrapper(queue):
+        '''Pre and post setup for maya.standalone instance.
+
+        :param queue: The file queue.
+        '''
+
+        maya.standalone.initialize(name='python')
+        while not queue.empty():
+            f = queue.get()
+            try:
+                fn(f)
+            except Exception, e:
+                logger.error(e)
+    return inst_wrapper
+
+
+def start(file_list, fn, processes=0, verbose=False):
     '''Creates a multiprocessing Queue from and run several worker
     processes to pull from it.
 
     :param file_list: List of files to process.
     :param fn: Target function.
     :param processes: Number of processes to run concurrently.(optional)
+    :param verbose: Enable/Disable verbose output.(optional)
     '''
 
-    qhandler = QueueHandler()
-    logger.addHandler(qhandler)
     if verbose:
-        qhandler.setLevel(logging.INFO)
+        logger.setLevel(logging.INFO)
     else:
-        qhandler.setLevel(logging.WARNING)
+        logger.setLevel(logging.WARNING)
 
     cpus = cpu_count()
-    processes = processes if processes else cpus
+    processes = processes if processes and processes <= cpus else cpus
 
     q = Queue()
     for f in file_list:

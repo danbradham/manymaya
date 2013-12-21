@@ -1,4 +1,6 @@
 *.py[cod]
+*.sublime_project
+*.sublime_workspace
 
 # C extensions
 *.so
@@ -33,5 +35,3 @@ nosetests.xml
 .mr.developer.cfg
 .project
 .pydevproject
-.sublime_project
-.sublime_workspace
