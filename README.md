@@ -57,6 +57,17 @@ Fluff...Exists only to shorten logging calls.
     - "DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"  
 
 
+##Benchmarks
+I ran two benchmarks. Creating 2000 new files and Modifying 2000 existing files. 
+
+| Processes   | Creation      | Modification  |
+|:-----------:|---------------|---------------|
+| 1           | 20.77719979   | 39.3076550027 |
+| 2           | 12.1300766695 | 21.6971742295 |
+| 3           | 8.53386258099 | 15.0104674404 |
+| 4           | 6.77421072293 | 11.8595186503 |
+
+
 ##Installation
 
     git clone https://danbradham@github.com/danbradham/manymaya.git
@@ -67,8 +78,3 @@ Fluff...Exists only to shorten logging calls.
 The best way to run a script utilizing ManyMaya is to execute it with mayapy, located in your Maya's bin path. You may want to add Maya's bin folder to your environment path to ease the use of calling mayapy.
 
     mayapy path/to/my/script.py
-
-
-##To Do
-  - Improve logging.
-  - Make output more verbose.
