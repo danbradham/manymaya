@@ -32,7 +32,7 @@ The api has two main functions, manymaya.instance and manymaya.start.
 ####manymaya.instance
 A decorator that wraps your function inside a maya.standalone instance. Every function you decorate with instance, must have a filepath argument.
 
-####manymaya.start(*file_list*, *fn*, *processes*=4, *verbose*=False)
+####manymaya.start(file_list, fn, processes=4, verbose=False)
 Creates a multiprocessing Queue and runs several worker processes to pull from it.
 
   - *file_list*: List of files to process.
@@ -43,7 +43,7 @@ Creates a multiprocessing Queue and runs several worker processes to pull from i
 
 ##Installation
 
-    git clone git@github.com:danbradham/manymaya.git
+    git clone https://danbradham@github.com/danbradham/manymaya.git
     cd manymaya
     python setup.py install
 
