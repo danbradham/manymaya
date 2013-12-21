@@ -34,12 +34,12 @@ As you can see ManyMaya is very easy to use. Simply decorate a function that tak
 A decorator that wraps your function inside a maya.standalone instance. Every function you decorate with instance, must have a filepath argument.
 
 ####manymaya.start(file_list, fn, processes=4, verbose=False)
-Creates a multiprocessing Queue and runs several worker processes to pull from it. Must be called in the if __name__ == "__main__" block(This is a requirement of python's multiprocessing module on windows).
+Creates a multiprocessing Queue and runs several worker processes to pull from it. Must be called in the if __name__ == "__main__" block.
 
   - *file_list*: List of files to process.
   - *fn*: Target function.
   - *processes*: Number of processes to run concurrently. (optional)
-  - *verbose*: Print verbose output. (optional)
+  - *verbose*: Print verbose output(Set logging level to INFO). (optional)
 
 ####manymaya.find(inside, exts=['ma', 'mb'], subdirs=True):
 Search a specified directory for Maya compatible files.
@@ -52,8 +52,9 @@ Returns a list of filepaths for use with manymaya.start().
 ####manymaya.log(message, level="INFO"):
 Fluff...Exists only to shorten logging calls.
 
--  message: Message to log.
--  level: Level at which to log message. (optional)
+  -  message: Message to log.
+  -  level: Level at which to log message. (optional)
+    - "DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"  
 
 
 ##Installation
