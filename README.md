@@ -9,7 +9,7 @@ Delete attributes from all maya files in a directory.
 import manymaya
 import maya.cmds as cmds
 
-#Decorate the function you'd like to run in each file.
+# Decorate the function you'd like to run in each maya instance.
 @manymaya.instance
 def delete_attributes(filepath):
     cmds.file(filepath, open=True, force=True)
@@ -20,9 +20,9 @@ def delete_attributes(filepath):
     cmds.file(save=True, force=True)
 
 if __name__ == "__main__":
-    #Find some files to work on
+    # Find some files to work on
     maya_files = manymaya.find('path/to/search')
-    #Start instances and run delete_attributes on each file.
+    # Start instances and run delete_attributes on each file.
     manymaya.start(maya_files, delete_attributes)
 ```
 
@@ -34,7 +34,7 @@ As you can see ManyMaya is very easy to use. Simply decorate a function that tak
 A decorator that wraps your function inside a maya.standalone instance. Every function you decorate with instance, must have a filepath argument.
 
 ####manymaya.start(file_list, fn, processes=4, verbose=False)
-Creates a multiprocessing Queue and runs several worker processes to pull from it.
+Creates a multiprocessing Queue and runs several worker processes to pull from it. Must be called in the if __name__ == "__main__" block(This is a requirement of python's multiprocessing module on windows).
 
   - *file_list*: List of files to process.
   - *fn*: Target function.
