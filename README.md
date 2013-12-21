@@ -27,7 +27,7 @@ if __name__ == "__main__":
 
 
 ###API
-The api has two main functions, manymaya.instance and manymaya.start.
+The api is very slim!
 
 ####manymaya.instance
 A decorator that wraps your function inside a maya.standalone instance. Every function you decorate with instance, must have a filepath argument.
@@ -37,8 +37,22 @@ Creates a multiprocessing Queue and runs several worker processes to pull from i
 
   - *file_list*: List of files to process.
   - *fn*: Target function.
-  - *processes*: Number of processes to run concurrently.(optional)
-  - *verbose*: Print verbose output.(optional)
+  - *processes*: Number of processes to run concurrently. (optional)
+  - *verbose*: Print verbose output. (optional)
+
+####manymaya.find(inside, exts=['ma', 'mb'], subdirs=True):
+Search a specified directory for Maya compatible files.
+Returns a list of filepaths for use with manymaya.start().
+
+  - *inside*: Path to search.
+  - *exts*: Extensions of files to include in returned list. (optional)
+  - *subdirs*: Search inside subdirs. (optional)
+
+####manymaya.log(message, level="INFO"):
+Fluff...Exists only to shorten logging calls.
+
+-  message: Message to log.
+-  level: Level at which to log message. (optional)
 
 
 ##Installation

@@ -11,7 +11,8 @@ def log(message, level="INFO"):
     '''Fluff...Exists only to shorten logging calls for the end user.
 
     :param message: Message to log.
-    :param level: Level at which to log message.(optional)'''
+    :param level: Level at which to log message.(optional)
+    '''
 
     {"DEBUG": logger.debug,
      "INFO": logger.info,

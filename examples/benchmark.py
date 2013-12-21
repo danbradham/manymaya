@@ -10,7 +10,7 @@ def create_lite_scene(filepath):
     cmds.file(new=True, force=True)
 
     #Perform some actions in the new scene
-    pcube = cmds.polyCube(name='lite')
+    pcube = cmds.polyCube(name='my_cuber1')
     cmds.xform(pcube, ws=True, t=(0.5, 0, 0))
 
     #Name the scene file and save
@@ -23,7 +23,7 @@ def modify_lite_scene(filepath):
     #Use the maya.cmds module to manipulate Maya
     cmds.scriptEditorInfo(suppressInfo=True, suppressResults=True)
     cmds.file(filepath, open=True, force=True)
-    cmds.polyCube(name="my_cube")
+    cmds.polyCube(name="my_cuber2")
     cmds.file(save=True, force=True)
 
 
