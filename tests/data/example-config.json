@@ -1,0 +1,4 @@
+{
+    "db_name": "example.db",
+    "db_schema": "example_schema.sql"
+}
