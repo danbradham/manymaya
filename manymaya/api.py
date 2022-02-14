@@ -58,7 +58,7 @@ def instance(fn):
             f = queue.get()
             try:
                 fn(f)
-            except Exception, e:
+            except Exception as e:
                 logger.error(e)
     return inst_wrapper
 
