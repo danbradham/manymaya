@@ -1,8 +1,8 @@
-#ManyMaya
+# ManyMaya
 A fast and light-weight wrapper for Autodesk Maya's standalone extension. ManyMaya leverages the multiprocessing module to run maya.standalone instances concurrently.
 
 
-##An example
+## An example
 Delete attributes from all maya files in a directory.
 
 ```python
@@ -27,13 +27,13 @@ if __name__ == "__main__":
 ```
 
 
-###API
+### API
 As you can see ManyMaya is very easy to use. Simply decorate a function that takes a single argument, *filepath*, then call manymaya.start with a list of filepaths and the decorated function as arguments.
 
-####manymaya.instance
+#### manymaya.instance
 A decorator that wraps your function inside a maya.standalone instance. Every function you decorate with instance, must have a filepath argument.
 
-####manymaya.start(file_list, fn, processes=4, verbose=False)
+#### manymaya.start(file_list, fn, processes=4, verbose=False)
 Creates a multiprocessing Queue and runs several worker processes to pull from it. Must be called in the if __name__ == "__main__" block.
 
   - *file_list*: List of files to process.
@@ -41,7 +41,7 @@ Creates a multiprocessing Queue and runs several worker processes to pull from i
   - *processes*: Number of processes to run concurrently. (optional)
   - *verbose*: Print verbose output(Set logging level to INFO). (optional)
 
-####manymaya.find(inside, exts=['ma', 'mb'], subdirs=True):
+#### manymaya.find(inside, exts=['ma', 'mb'], subdirs=True):
 Search a specified directory for Maya compatible files.
 Returns a list of filepaths for use with manymaya.start().
 
@@ -49,7 +49,7 @@ Returns a list of filepaths for use with manymaya.start().
   - *exts*: Extensions of files to include in returned list. (optional)
   - *subdirs*: Search inside subdirs. (optional)
 
-####manymaya.log(message, level="INFO"):
+#### manymaya.log(message, level="INFO"):
 Fluff...Exists only to shorten logging calls.
 
   -  message: Message to log.
@@ -57,7 +57,7 @@ Fluff...Exists only to shorten logging calls.
     - "DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"  
 
 
-##Benchmarks
+## Benchmarks
 I ran two benchmarks. Creating 2000 new files and Modifying 2000 existing files. 
 
 | Processes   | Creation      | Modification  |
@@ -68,13 +68,13 @@ I ran two benchmarks. Creating 2000 new files and Modifying 2000 existing files.
 | 4           | 6.77421072293 | 11.8595186503 |
 
 
-##Installation
+## Installation
 
     git clone https://danbradham@github.com/danbradham/manymaya.git
     cd manymaya
     python setup.py install
 
-###Running ManyMaya Scripts
+### Running ManyMaya Scripts
 The best way to run a script utilizing ManyMaya is to execute it with mayapy, located in your Maya's bin path. You may want to add Maya's bin folder to your environment path to ease the use of calling mayapy.
 
     mayapy path/to/my/script.py
